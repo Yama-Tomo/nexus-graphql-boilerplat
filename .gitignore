@@ -15,6 +15,9 @@
 /build
 /build-server
 
+# env
+.env*
+
 # misc
 .DS_Store
 .env.local
