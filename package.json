@@ -7,7 +7,9 @@
     "nexus-plugin-prisma": "^0.17.0"
   },
   "scripts": {
-    "generate:prisma": "prisma generate"
+    "generate": "yarn generate:prisma && yarn generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/graphql-server/nexus-schema-gen.ts"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.61",
