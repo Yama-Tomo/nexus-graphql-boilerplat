@@ -1,0 +1,12 @@
+{
+  "name": "nexus-graphql-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "nexus-plugin-prisma": "^0.17.0"
+  },
+  "scripts": {
+    "generate:prisma": "prisma generate"
+  },
+  "devDependencies": {}
+}
