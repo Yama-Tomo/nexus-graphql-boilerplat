@@ -10,11 +10,14 @@
     "react-scripts": "^3.4.3"
   },
   "scripts": {
+    "dev": "FORCE_COLOR=true run-p -l dev:* | cat",
     "dev:client": "react-app-rewired start",
     "dev:server": "ts-node-dev -P tsconfig-graphql-server.json --no-notify --respawn --transpile-only src/graphql-server/server.ts",
-    "generate": "yarn generate:prisma && yarn generate:nexus",
+    "dev:graphql-types": "yarn generate:graphql-types --watch < /dev/null",
+    "generate": "run-p -l generate:*",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node -P tsconfig-graphql-server.json --transpile-only src/graphql-server/nexus-schema-gen.ts",
+    "generate:graphql-types": "apollo client:codegen --localSchemaFile=./schema.graphql --target=typescript --includes='./src/**/*.{ts,tsx,graphql}'",
     "lint": "eslint './src/**/*.{ts,tsx}' --format codeframe --color"
   },
   "devDependencies": {
@@ -24,6 +27,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.1.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1",
     "react-app-rewired": "^2.1.6",
     "react-refresh": "^0.8.3",
