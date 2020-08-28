@@ -1,5 +1,5 @@
-import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { createContext } from './context';
 import { schema } from './nexus-schema-gen';
@@ -18,7 +18,5 @@ const apollo = new ApolloServer({
 apollo.applyMiddleware({ app });
 
 server.listen({ port: PORT }, () => {
-  process.stdout.write(
-    `🚀 Server ready at http://localhost:${PORT}${apollo.graphqlPath}\n`,
-  );
+  process.stdout.write(`🚀 Server ready at http://localhost:${PORT}${apollo.graphqlPath}\n`);
 });

@@ -1,6 +1,6 @@
+import * as path from 'path';
 import { makeSchema } from '@nexus/schema';
 import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema';
-import * as path from 'path';
 import * as resolvers from './resolvers';
 import * as objectTypes from './object_types';
 
@@ -12,14 +12,14 @@ const schema = makeSchema({
     typegen: path.join(__dirname, './nexus-generaged.ts'),
   },
   typegenAutoConfig: {
-    contextType: "Context.Context",
+    contextType: 'Context.Context',
     sources: [
       {
-        source: require.resolve("./context"),
-        alias: "Context"
-      }
-    ]
-  }
+        source: require.resolve('./context'),
+        alias: 'Context',
+      },
+    ],
+  },
 });
 
 export { schema };
