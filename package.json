@@ -14,11 +14,16 @@
     "dev:server": "ts-node-dev -P tsconfig-graphql-server.json --no-notify --respawn --transpile-only src/graphql-server/server.ts",
     "generate": "yarn generate:prisma && yarn generate:nexus",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node -P tsconfig-graphql-server.json --transpile-only src/graphql-server/nexus-schema-gen.ts"
+    "generate:nexus": "ts-node -P tsconfig-graphql-server.json --transpile-only src/graphql-server/nexus-schema-gen.ts",
+    "lint": "eslint './src/**/*.{ts,tsx}' --format codeframe --color"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.1",
     "@types/react-dom": "^16.9.8",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react-hooks": "^4.1.0",
+    "prettier": "^2.1.1",
     "react-app-rewired": "^2.1.6",
     "react-refresh": "^0.8.3",
     "ts-node-dev": "^1.0.0-pre.61",
