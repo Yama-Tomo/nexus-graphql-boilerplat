@@ -20,7 +20,7 @@
     "build:server": "yarn tsc -P ./tsconfig-graphql-server.json --outDir build-server",
     "generate": "run-p -l generate:*",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node -P tsconfig-graphql-server.json --transpile-only src/graphql-server/nexus-schema-gen.ts",
+    "generate:nexus": "ts-node -P tsconfig-graphql-server.json --transpile-only src/graphql-server/schema.ts",
     "generate:graphql-types": "apollo client:codegen --localSchemaFile=./schema.graphql --target=typescript --includes='./src/**/*.{ts,tsx,graphql}'",
     "prisma-playground": "ts-node -P tsconfig-graphql-server.json -O '{ \"isolatedModules\": false }'",
     "lint": "eslint './src/**/*.{ts,tsx}' --format codeframe --color"

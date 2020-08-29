@@ -3,7 +3,7 @@ import path from 'path';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { createContext } from './context';
-import { schema } from './nexus-schema-gen';
+import { schema } from './schema';
 
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
