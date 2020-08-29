@@ -2,12 +2,181 @@
 ### Do not make changes to this file directly
 
 
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+type Mutation {
+  createOnePost(data: PostCreateInput!): Post!
+  createOneUser(data: UserCreateInput!): User!
+  deleteOnePost(where: PostWhereUniqueInput!): Post
+  deleteOneUser(where: UserWhereUniqueInput!): User
+  disablePost(id: Int!): Post!
+  enablePost(id: Int!): Post!
+  updateOnePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
 type Post {
   author: User
   content: String
   id: Int!
   published: Boolean!
   title: String!
+}
+
+input PostCreateInput {
+  author: UserCreateOneWithoutPostsInput
+  content: String
+  published: Boolean!
+  title: String!
+}
+
+input PostCreateManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  create: [PostCreateWithoutAuthorInput!]
+}
+
+input PostCreateWithoutAuthorInput {
+  content: String
+  published: Boolean!
+  title: String!
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  content: StringNullableFilter
+  id: IntFilter
+  NOT: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  published: BoolFilter
+  title: StringFilter
+  userId: IntNullableFilter
+}
+
+input PostUpdateInput {
+  author: UserUpdateOneWithoutPostsInput
+  content: String
+  published: Boolean
+  title: String
+}
+
+input PostUpdateManyDataInput {
+  content: String
+  published: Boolean
+  title: String
+}
+
+input PostUpdateManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  create: [PostCreateWithoutAuthorInput!]
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [PostScalarWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  data: PostUpdateManyDataInput!
+  where: PostScalarWhereInput!
+}
+
+input PostUpdateWithoutAuthorDataInput {
+  content: String
+  published: Boolean
+  title: String
+}
+
+input PostUpdateWithWhereUniqueWithoutAuthorInput {
+  data: PostUpdateWithoutAuthorDataInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutAuthorInput {
+  create: PostCreateWithoutAuthorInput!
+  update: PostUpdateWithoutAuthorDataInput!
+  where: PostWhereUniqueInput!
 }
 
 input PostWhereUniqueInput {
@@ -18,8 +187,77 @@ type Query {
   users: [User!]!
 }
 
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
 type User {
   id: Int!
   name: String!
   posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int): [Post!]!
+}
+
+input UserCreateInput {
+  name: String!
+  posts: PostCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutPostsInput
+}
+
+input UserCreateWithoutPostsInput {
+  name: String!
+}
+
+input UserUpdateInput {
+  name: String
+  posts: PostUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutPostsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+}
+
+input UserUpdateWithoutPostsDataInput {
+  name: String
+}
+
+input UserUpsertWithoutPostsInput {
+  create: UserCreateWithoutPostsInput!
+  update: UserUpdateWithoutPostsDataInput!
+}
+
+input UserWhereUniqueInput {
+  id: Int
 }
