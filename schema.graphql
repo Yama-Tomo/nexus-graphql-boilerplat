@@ -121,6 +121,12 @@ input PostCreateWithoutAuthorInput {
   title: String!
 }
 
+input PostListRelationFilter {
+  every: PostWhereInput
+  none: PostWhereInput
+  some: PostWhereInput
+}
+
 input PostScalarWhereInput {
   AND: [PostScalarWhereInput!]
   content: StringNullableFilter
@@ -179,6 +185,18 @@ input PostUpsertWithWhereUniqueWithoutAuthorInput {
   where: PostWhereUniqueInput!
 }
 
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  author: UserWhereInput
+  content: StringNullableFilter
+  id: IntFilter
+  NOT: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  published: BoolFilter
+  title: StringFilter
+  userId: IntNullableFilter
+}
+
 input PostWhereUniqueInput {
   id: Int
 }
@@ -218,7 +236,7 @@ input StringNullableFilter {
 type User {
   id: Int!
   name: String!
-  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int): [Post!]!
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int, where: PostWhereInput): [Post!]!
 }
 
 input UserCreateInput {
@@ -256,6 +274,15 @@ input UserUpdateWithoutPostsDataInput {
 input UserUpsertWithoutPostsInput {
   create: UserCreateWithoutPostsInput!
   update: UserUpdateWithoutPostsDataInput!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  posts: PostListRelationFilter
 }
 
 input UserWhereUniqueInput {

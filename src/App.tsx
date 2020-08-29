@@ -7,7 +7,7 @@ const USERS_QUERY = gql`
     users {
       id
       name
-      posts {
+      posts(where: { published: { equals: true } }) {
         id
         content
       }
