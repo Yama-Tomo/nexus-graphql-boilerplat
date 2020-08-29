@@ -31,4 +31,15 @@
   ```bash
   $ yarn dev
   ```
-
+- prisma sql playground 
+  ```bash
+  $ yarn prisma-playground
+  yarn run v1.22.4
+  $ ts-node -P tsconfig-graphql-server.json -O '{ "isolatedModules": false }'
+  > import { prisma } from './src/graphql-server/prisma_client'
+  {}
+  > prisma.test_table.findMany().then(data => console.log(data))
+  Promise { <pending> }
+  > SQL(11ms) SELECT `db`.`test_table`.`id`, `db`.`test_table`.`name` FROM `db`.`test_table` WHERE 1=1
+  []
+  ```
